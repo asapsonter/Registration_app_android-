@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.control.ControlFragment">
+
+        <TextView
+            android:id="@+id/tv_heading_room_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="sans-serif"
+            android:text="@string/all_lights"
+            android:textAllCaps="true"
+            android:textColor="#979A9C"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toStartOf="@id/cv_all_lights"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_all_lights"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_7sdp"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_heading_room_name">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/tv_heading_auto_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:fontFamily="@font/exo2_regular"
+                    android:text="@string/auto_mode"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.suke.widget.SwitchButton
+                    android:id="@+id/switch_auto_mode"
+                    android:layout_width="@dimen/_48sdp"
+                    android:layout_height="@dimen/_29sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_heading_auto_mode"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_heading_auto_mode"
+                    app:sb_background="#dddddd"
+                    app:sb_border_width="2dp"
+                    app:sb_checked_color="#0084e6"
+                    app:sb_checkline_color="@android:color/transparent"
+                    app:sb_show_indicator="false"
+                    app:switchMinWidth="20dp" />
+
+                <View
+                    android:id="@+id/seperator_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:background="@color/gray_background"
+                    app:layout_constraintTop_toBottomOf="@id/tv_heading_auto_mode" />
+
+                <TextView
+                    android:id="@+id/tv_heading_master_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/exo2_regular"
+                    android:text="@string/master_switch"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/seperator_1" />
+
+                <com.suke.widget.SwitchButton
+                    android:id="@+id/switch_master"
+                    android:layout_width="@dimen/_48sdp"
+                    android:layout_height="@dimen/_29sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_heading_master_switch"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_heading_master_switch"
+                    app:sb_background="#dddddd"
+                    app:sb_border_width="2dp"
+                    app:sb_checked_color="#0084e6"
+                    app:sb_checkline_color="@android:color/transparent"
+                    app:sb_show_indicator="false"
+                    app:switchMinWidth="20dp" />
+
+                <View
+                    android:id="@+id/seperator_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:background="@color/gray_background"
+                    app:layout_constraintTop_toBottomOf="@id/tv_heading_master_switch" />
+
+                <ImageView
+                    android:id="@+id/view_light_indicator_left"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_18sdp"
+                    android:src="@drawable/ic_low"
+                    app:layout_constraintEnd_toEndOf="@id/view_color_indicator_left"
+                    app:layout_constraintStart_toStartOf="@id/view_color_indicator_left"
+                    app:layout_constraintTop_toBottomOf="@id/seperator_2" />
+
+                <ImageView
+                    android:id="@+id/view_light_indicator_right"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:src="@drawable/ic_up"
+                    app:layout_constraintBottom_toBottomOf="@id/view_light_indicator_left"
+                    app:layout_constraintEnd_toEndOf="@id/view_color_indicator_right"
+                    app:layout_constraintStart_toStartOf="@id/view_color_indicator_right"
+                    app:layout_constraintTop_toTopOf="@id/view_light_indicator_left" />
+
+                <SeekBar
+                    android:id="@+id/sb_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxHeight="@dimen/_3sdp"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/seekbar_track"
+                    android:progressTint="#0084e6"
+                    android:thumb="@drawable/thumb_selector"
+                    app:layout_constraintBottom_toBottomOf="@id/view_light_indicator_left"
+                    app:layout_constraintEnd_toEndOf="@id/color_picker"
+                    app:layout_constraintStart_toStartOf="@id/color_picker"
+                    app:layout_constraintTop_toTopOf="@id/view_light_indicator_left" />
+
+                <View
+                    android:id="@+id/seperator_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:background="@color/gray_background"
+                    app:layout_constraintTop_toBottomOf="@id/sb_1" />
+
+                <View
+                    android:id="@+id/view_color_indicator_left"
+                    android:layout_width="@dimen/_13sdp"
+                    android:layout_height="@dimen/_13sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_18sdp"
+                    android:background="@drawable/thumb_selector"
+                    android:backgroundTint="#FF7503"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/seperator_3" />
+
+                <View
+                    android:id="@+id/view_color_indicator_right"
+                    android:layout_width="@dimen/_13sdp"
+                    android:layout_height="@dimen/_13sdp"
+                    android:layout_marginTop="@dimen/_18sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/thumb_selector"
+                    android:backgroundTint="@color/color_picker_6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/seperator_3" />
+
+                <com.yuan.gradientcolorpickerbar.GradientColorPickerBar
+                    android:id="@+id/color_picker"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:barHeight="@dimen/_3sdp"
+                    app:barRadius="0dp"
+                    app:colorEntries="@array/rainbow"
+                    app:layout_constraintBottom_toBottomOf="@id/view_color_indicator_left"
+                    app:layout_constraintEnd_toStartOf="@id/view_color_indicator_right"
+                    app:layout_constraintStart_toEndOf="@id/view_color_indicator_left"
+                    app:layout_constraintTop_toTopOf="@id/view_color_indicator_left"
+                    app:orientation="horizontal"
+                    app:progress="0.5"
+                    app:thumbRadius="@dimen/_20sdp"
+                    app:thumbSize="@dimen/_20sdp"
+                    app:thumbStrokeColor="@color/gray_background" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_work_mode_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:fontFamily="@font/exo2_extralight"
+            android:text="@string/all_lights_desc"
+            android:textSize="@dimen/_9ssp"
+            app:layout_constraintEnd_toEndOf="@id/cv_all_lights"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@id/cv_all_lights"
+            app:layout_constraintTop_toBottomOf="@id/cv_all_lights" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
