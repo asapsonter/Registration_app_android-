@@ -2,4 +2,9 @@
     <string name="app_name">regApp</string>
     <string name="Ultimate_baby">Ultimate Baby</string>
     <string name="layout_stayout">Layout OR Stayout</string>
+    <string name="email_add">Email Address</string>
+    <string name="user_password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="forget_password">Forgot Password?</string>
 </resources>
