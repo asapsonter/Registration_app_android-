@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">regApp</string>
+    <string name="Ultimate_baby">Ultimate Baby</string>
+    <string name="layout_stayout">Layout OR Stayout</string>
 </resources>
