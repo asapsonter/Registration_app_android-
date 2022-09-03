@@ -1,29 +1,36 @@
 package com.example.regapp;
 
-import static androidx.core.util.PatternsCompat.EMAIL_ADDRESS;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatEditText;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
-import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView big_header;
     private AppCompatButton user_regBtn;
-    private AppCompatEditText editTextfullName, editAge, editEmail, editPassword;
+    private EditText editAge;
+    private EditText editTextfullName;
+    private EditText editEmail;
+    private EditText editPassword;
     private ProgressBar progressBar;
+
 
     private FirebaseAuth mAuth;
     @Override
@@ -41,10 +48,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         big_header = (TextView) findViewById(R.id.big_header);
         big_header.setOnClickListener(this);
 
-        editTextfullName = (AppCompatEditText) findViewById(R.id.input_name);
-        editAge = (AppCompatEditText) findViewById(R.id.input_age);
-        editEmail = (AppCompatEditText) findViewById(R.id.reg_email);
-        editPassword = (AppCompatEditText) findViewById(R.id.reg_pass);
+        editTextfullName = (EditText) findViewById(R.id.input_name);
+        editAge = (EditText) findViewById(R.id.input_age);
+        editEmail = (EditText) findViewById(R.id.reg_email);
+        editPassword = (EditText) findViewById(R.id.reg_pass);
 
         progressBar = (ProgressBar) findViewById(R.id.indeterminateBar2);
 
@@ -72,9 +79,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private void registerUser(){
 
         String input_name = Objects.requireNonNull(editTextfullName.getText()).toString().trim();
-        String input_age = editAge.getText().toString().trim();
-        String reg_pass = editPassword.getText().toString().trim();
-        String reg_email = editEmail.getText().toString().trim();
+        String input_age = Objects.requireNonNull(editAge.getText()).toString().trim();
+        String reg_pass = Objects.requireNonNull(editPassword.getText()).toString().trim();
+        String reg_email = Objects.requireNonNull(editEmail.getText()).toString().trim();
 //if empty name field
         if(input_name.isEmpty()) {
             editTextfullName.setError("full name is required! ");
@@ -121,5 +128,46 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return;
         }
 
+        progressBar.setVisibility(View.VISIBLE);
+        mAuth.createUserWithEmailAndPassword(reg_email,reg_pass)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+
+                            User user = new User(input_name, reg_email, input_age);
+
+                            FirebaseDatabase.getInstance()
+                                    .getReference("Users")
+                                    .child(Objects.requireNonNull(FirebaseAuth.getInstance()
+                                            .getCurrentUser()).getUid())
+                                    .setValue(user)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+
+                                            if(task.isSuccessful()){
+                                                Toast.makeText(RegisterActivity.this, "user has been registered! ", Toast.LENGTH_LONG).show();
+                                                progressBar.setVisibility(View.VISIBLE);
+                                                System.out.println("user registered");
+
+
+                                            } else {
+                                                Toast.makeText(RegisterActivity.this, "registration failed, check your info and try again! ", Toast.LENGTH_LONG).show();
+                                                progressBar.setVisibility(View.GONE);
+                                                System.out.println("toasted at failed check info");
+                                            }
+
+                                        }
+                                    });
+
+
+                        } else{
+                            Toast.makeText(RegisterActivity.this, "failed to register", Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
+                            System.out.println("failed");
+                        }
+                    }
+                });
     }
 }

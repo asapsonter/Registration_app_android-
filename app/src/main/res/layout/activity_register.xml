@@ -32,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/big_header" />
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <EditText
         android:id="@+id/input_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_title" />
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <EditText
         android:id="@+id/input_age"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
         app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <EditText
         android:id="@+id/reg_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_age" />
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <EditText
         android:id="@+id/reg_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
