@@ -2,6 +2,7 @@ package com.example.regapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
@@ -63,6 +64,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
+
+
+
         switch (v.getId()){
             case R.id.big_header:
                 //navigate to login page
@@ -128,7 +132,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return;
         }
 
-        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
         mAuth.createUserWithEmailAndPassword(reg_email,reg_pass)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -137,25 +141,30 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                             User user = new User(input_name, reg_email, input_age);
 
-                            FirebaseDatabase.getInstance()
+                            FirebaseDatabase.getInstance("https://regapp-dea5b-default-rtdb.asia-southeast1.firebasedatabase.app")
                                     .getReference("Users")
-                                    .child(Objects.requireNonNull(FirebaseAuth.getInstance()
-                                            .getCurrentUser()).getUid())
+                                    .child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
                                     .setValue(user)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
 
+
                                             if(task.isSuccessful()){
                                                 Toast.makeText(RegisterActivity.this, "user has been registered! ", Toast.LENGTH_LONG).show();
                                                 progressBar.setVisibility(View.VISIBLE);
-                                                System.out.println("user registered");
+                                                Log.d("Error", Objects.requireNonNull(task.getException()).toString());
+
+
+
+
+
 
 
                                             } else {
                                                 Toast.makeText(RegisterActivity.this, "registration failed, check your info and try again! ", Toast.LENGTH_LONG).show();
                                                 progressBar.setVisibility(View.GONE);
-                                                System.out.println("toasted at failed check info");
+
                                             }
 
                                         }
@@ -165,7 +174,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         } else{
                             Toast.makeText(RegisterActivity.this, "failed to register", Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);
-                            System.out.println("failed");
+                            Log.d("Error", Objects.requireNonNull(task.getException()).toString());
+
                         }
                     }
                 });

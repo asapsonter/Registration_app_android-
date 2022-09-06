@@ -4,7 +4,7 @@ public class User {
 
     public String input_name, input_age, reg_email;
 
-    public User(){
+    public User(String input_name, String reg_email, String input_age, String reg_pass){
 
     }
 
