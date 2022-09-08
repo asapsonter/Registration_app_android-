@@ -56,17 +56,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         progressBar = (ProgressBar) findViewById(R.id.indeterminateBar2);
 
-
-
-
-
     }
 
     @Override
     public void onClick(View v) {
-
-
-
         switch (v.getId()){
             case R.id.big_header:
                 //navigate to login page
@@ -139,7 +132,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
 
-                            User user = new User(input_name, reg_email, input_age);
+                            User user = new User(input_name, input_age, reg_email);
 
                             FirebaseDatabase.getInstance("https://regapp-dea5b-default-rtdb.asia-southeast1.firebasedatabase.app")
                                     .getReference("Users")
@@ -149,17 +142,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
 
-
                                             if(task.isSuccessful()){
                                                 Toast.makeText(RegisterActivity.this, "user has been registered! ", Toast.LENGTH_LONG).show();
                                                 progressBar.setVisibility(View.VISIBLE);
                                                 Log.d("Error", Objects.requireNonNull(task.getException()).toString());
-
-
-
-
-
-
 
                                             } else {
                                                 Toast.makeText(RegisterActivity.this, "registration failed, check your info and try again! ", Toast.LENGTH_LONG).show();
@@ -169,7 +155,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                                         }
                                     });
-
 
                         } else{
                             Toast.makeText(RegisterActivity.this, "failed to register", Toast.LENGTH_LONG).show();

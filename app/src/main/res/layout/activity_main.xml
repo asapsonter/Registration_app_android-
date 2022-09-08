@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/big_header" />
 
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/input_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/layout_title"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/input_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
