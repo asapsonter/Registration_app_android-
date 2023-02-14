@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.example.regapp.databinding.ActivityRegisterBinding;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -37,7 +39,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        com.example.regapp.databinding.ActivityRegisterBinding binding = ActivityRegisterBinding
+                .inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         //implement firebaseObject
         mAuth = FirebaseAuth.getInstance();
